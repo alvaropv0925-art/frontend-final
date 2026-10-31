@@ -37,6 +37,16 @@ fs.writeFileSync(csvfile, 'Nombre Completo,Correo Electronico,Telefono,Direccion
     });
 });
 
+// Ruta para consultar/descargar la base de datos de compras
+app.get('/ver-compras', (req, res) => {
+  const csvfile = path.join(__dirname, 'BasedeDatos.csv');
+  if (fs.existsSync(csvfile)) {
+    res.sendFile(csvfile);
+  } else {
+    res.send('Aún no se ha realizado ninguna compra.');
+  }
+});
+
 const PORT = process.env.PORT || 3000;
 app.listen(PORT, () => {
     console.log(`Servidor de Frontend Store corriendo en http://localhost:${PORT}`);
