@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEnd Store</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a class="header__logo" href="index.html" aria-label="FrontEnd Store, inicio">
+            <span class="logo__linea1">FRONTEND</span>
+            <span class="logo__linea2">STORE</span>
+        </a>
+    </header>
+
+    <nav class="navegacion">
+        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+        <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+    <button id="btn-mostrar-carrito" class="btn-carrito-flotante">🛒 Carrito (<span id="contador-carrito">0</span>)</button>
+</nav>
+
+    <main class="contenedor">
+        <h1>Nuestros Productos</h1>
+
+        <div class="grid">
+            <div class="producto">
+                <a href="producto.html?id=1">
+                    <img class="producto__imagen" src="img/1.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">VueJS</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=2">
+                    <img class="producto__imagen" src="img/2.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">AngularJS</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=3">
+                    <img class="producto__imagen" src="img/3.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">ReactJS</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=4">
+                    <img class="producto__imagen" src="img/4.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">Redux</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=5">
+                    <img class="producto__imagen" src="img/5.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">Node.js</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=6">
+                    <img class="producto__imagen" src="img/6.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">SASS</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=7">
+                    <img class="producto__imagen" src="img/7.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">HTML5</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=8">
+                    <img class="producto__imagen" src="img/8.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">Github</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=9">
+                    <img class="producto__imagen" src="img/9.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">BulmaCSS</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=10">
+                    <img class="producto__imagen" src="img/10.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">TypeScript</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=11">
+                    <img class="producto__imagen" src="img/11.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">Drupal</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=12">
+                    <img class="producto__imagen" src="img/12.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">JavaScript</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=13">
+                    <img class="producto__imagen" src="img/13.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">GraphQL</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+            <div class="producto">
+                <a href="producto.html?id=14">
+                    <img class="producto__imagen" src="img/14.jpg" alt="imagen camisa">
+                    <div class="producto__informacion">
+                        <p class="producto__nombre">WordPress</p>
+                        <p class="producto__precio">$40.000</p>
+                    </div>
+                </a>
+            </div>  <!--.producto-->
+
+            <div class="grafico grafico--camisas"></div>
+            <div class="grafico grafico--node"></div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__texto">Front End Store - Todos los derechos Reservados 2026.</p>
+    </footer>
+    
+    <script>
+        // Los precios se leen de data/productos.json (un solo lugar para cambiarlos)
+        const formatoPesos = n => '$' + new Intl.NumberFormat('es-CO').format(n);
+        fetch('data/productos.json')
+            .then(r => r.json())
+            .then(lista => {
+                document.querySelectorAll('.producto').forEach(tarjeta => {
+                    const id = Number(new URL(tarjeta.querySelector('a').href).searchParams.get('id'));
+                    const p = lista.find(x => x.id === id);
+                    if (p) tarjeta.querySelector('.producto__precio').textContent = formatoPesos(p.precio);
+                });
+            })
+            .catch(() => {});
+    </script>
+
+    <!-- Carrito Flotante Lateral -->
+    <div id="carrito-sidebar" class="carrito-sidebar">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button id="cerrar-carrito" class="cerrar-carrito">&times;</button>
+        </div>
+        
+        <div class="carrito-body" id="lista-carrito">
+            <p style="color: #888;">El carrito está vacío.</p>
+        </div>
+        
+        <div class="carrito-footer">
+            <div class="carrito-total-container">
+                <h4>Total:</h4>
+                <h4 style="color: #ff0055;">$<span id="total-carrito">0</span></h4>
+            </div>
+            
+            <div class="form-checkout">
+                <input type="text" id="nombre-cliente" placeholder="Nombre completo" required>
+                <input type="email" id="correo-cliente" placeholder="Correo electrónico" required>
+                <input type="tel" id="telefono-cliente" placeholder="Teléfono" required>
+                <input type="text" id="direccion-cliente" placeholder="Dirección de envío" required>
+                <button id="procesar-compra" class="btn-comprar-final">Comprar Ahora</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/carrito.js"></script>
+
+</body>
+</html>

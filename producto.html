@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>FrontEnd Store</title>
+    <link rel="stylesheet" href="css/normalize.css">
+    <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@500;600&family=Staatliches&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <header class="header">
+        <a class="header__logo" href="index.html" aria-label="FrontEnd Store, inicio">
+            <span class="logo__linea1">FRONTEND</span>
+            <span class="logo__linea2">STORE</span>
+        </a>
+    </header>
+
+    <nav class="navegacion">
+        <a class="navegacion__enlace navegacion__enlace--activo" href="index.html">Tienda</a>
+        <a class="navegacion__enlace" href="nosotros.html">Nosotros</a>
+        <button id="btn-mostrar-carrito" class="btn-carrito-flotante">🛒 Carrito (<span id="contador-carrito">0</span>)</button>
+    </nav>
+
+    <main class="contenedor">
+        <a class="volver" href="index.html">Volver a la tienda</a>
+        <h1 id="titulo">Cargando...</h1>
+
+        <div class="camisa" id="camisa" hidden>
+            <img class="camisa__imagen" id="imagen" src="" alt="Imagen del Producto">
+
+            <div class="camisa__contenido">
+                <p id="descripcion"></p>
+                <p class="camisa__precio">Precio: <span id="precio"></span> c/u</p>
+
+                <!-- Formulario limpio solo para Talla, Cantidad y Botón de Agregar -->
+                <form class="formulario" id="formulario" novalidate>
+                    <select class="formulario__campo formulario__campo--ancho" name="talla" id="talla" required>
+                        <option value="" disabled selected>-- Seleccionar Talla --</option>
+                        <option value="Chica">Chica</option>
+                        <option value="Mediana">Mediana</option>
+                        <option value="Grande">Grande</option>
+                    </select>
+                    
+                    <input class="formulario__campo formulario__campo--ancho" type="number" name="cantidad" id="cantidad" placeholder="Cantidad" min="1" max="99" value="1" required>
+
+                    <p class="formulario__total formulario__campo--ancho">Total: <span id="total">$0</span></p>
+                    
+                    <button type="submit" class="formulario__submit">Agregar al Carrito</button>
+                    <p class="formulario__mensaje" id="mensaje" role="status"></p>
+                </form>
+            </div>
+        </div>
+    </main>
+
+    <footer class="footer">
+        <p class="footer__texto">Front End Store - Todos los derechos Reservados 2022.</p>
+    </footer>
+
+    <script>
+        const $ = id => document.getElementById(id);
+        const pesos = n => '$' + new Intl.NumberFormat('es-CO').format(n);
+        const urlParams = new URLSearchParams(location.search);
+        const id = Number(urlParams.get('id'));
+        let producto = null;
+
+        function mostrarMensaje(texto, esError) {
+            const m = $('mensaje');
+            m.textContent = texto;
+            m.className = 'formulario__mensaje ' + (esError ? 'formulario__mensaje--error' : 'formulario__mensaje--ok');
+            setTimeout(() => { m.textContent = ''; }, 3000);
+        }
+
+        function actualizarTotal() {
+            const cant = parseInt($('cantidad').value, 10);
+            $('total').textContent = pesos(cant > 0 && producto ? cant * producto.precio : 0);
+        }
+
+        async function cargar() {
+            try {
+                const resp = await fetch('data/productos.json');
+                const lista = await resp.json();
+                producto = lista.find(p => p.id === id);
+            } catch (e) {
+                $('titulo').textContent = 'No se pudo cargar el producto.';
+                return;
+            }
+            if (!producto) {
+                $('titulo').textContent = 'Producto no encontrado';
+                return;
+            }
+            document.title = producto.nombre + ' - FrontEnd Store';
+            $('titulo').textContent = producto.nombre;
+            $('imagen').src = producto.imagen;
+            $('imagen').alt = 'Camiseta ' + producto.nombre;
+            $('descripcion').textContent = producto.descripcion;
+            $('precio').textContent = pesos(producto.precio);
+            $('camisa').hidden = false;
+            actualizarTotal();
+        }
+
+        $('cantidad').addEventListener('input', actualizarTotal);
+
+        // Al enviar el formulario del producto, se añade al carrito lateral global
+        $('formulario').addEventListener('submit', e => {
+            e.preventDefault();
+            const talla = $('talla').value;
+            const cantidad = parseInt($('cantidad').value, 10);
+
+            if (!talla) {
+                mostrarMensaje('Por favor selecciona una talla.', true);
+                return;
+            }
+
+            if (!cantidad || cantidad < 1) {
+                mostrarMensaje('Ingresa una cantidad válida.', true);
+                return;
+            }
+
+            // Llamamos a la función global que está en js/carrito.js
+            if (window.agregarProductoAlCarrito) {
+                window.agregarProductoAlCarrito(producto.nombre, producto.precio, talla, cantidad);
+                mostrarMensaje('¡Producto agregado al carrito con éxito!', false);
+            }
+        });
+
+        cargar();
+    </script>
+
+    <!-- Carrito Flotante Lateral -->
+    <div id="carrito-sidebar" class="carrito-sidebar">
+        <div class="carrito-header">
+            <h3>Tu Carrito</h3>
+            <button id="cerrar-carrito" class="cerrar-carrito">&times;</button>
+        </div>
+        
+        <div class="carrito-body" id="lista-carrito">
+            <p style="color: #888;">El carrito está vacío.</p>
+        </div>
+        
+        <div class="carrito-footer">
+            <div class="carrito-total-container">
+                <h4>Total:</h4>
+                <h4 style="color: #ff0055;">$<span id="total-carrito">0</span></h4>
+            </div>
+            
+            <div class="form-checkout">
+                <input type="text" id="nombre-cliente" placeholder="Nombre completo" required>
+                <input type="email" id="correo-cliente" placeholder="Correo electrónico" required>
+                <input type="tel" id="telefono-cliente" placeholder="Teléfono" required>
+                <input type="text" id="direccion-cliente" placeholder="Dirección de envío" required>
+                <button id="procesar-compra" class="btn-comprar-final">Comprar Ahora</button>
+            </div>
+        </div>
+    </div>
+    <script src="js/carrito.js"></script>
+</body>
+</html>
