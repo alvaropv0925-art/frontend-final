@@ -25,8 +25,7 @@ app.post('/api/comprar', (req, res) => {
 
     // Si el archivo no existe, crearlo con encabezados
     if (!fs.existsSync(csvFile)) {
-        fs.writeFileSync(csvFile, '"Nombre Completo","Correo Electronico","Telefono","Direccion","Productos","Total","Fecha"', 'utf8');
-    }
+fs.writeFileSync(csvfile, 'Nombre Completo,Correo Electronico,Telefono,Direccion,Productos,Total,Fecha\n');    }
 
     fs.appendFile(csvFile, lineaCSV, 'utf8', (err) => {
         if (err) {
